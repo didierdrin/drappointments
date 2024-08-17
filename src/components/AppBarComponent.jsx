@@ -52,7 +52,7 @@ const AppBarComponent = ({ titleName }) => {
 
     return (
         <div>
-            <AppBar position="static" className="bg-gradient-to-b from-blue-400 to-blue-400">
+            <AppBar position="static" className=" bg-gradient-to-b from-violet-400 to-violet-200">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)}>
                         <MenuIcon />

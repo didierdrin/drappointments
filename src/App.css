@@ -1,8 +1,14 @@
 #root {
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding: 0px;
   text-align: center;
-  background: linear-gradient(to bottom, #007bff, white);
+  /* background: linear-gradient(to bottom, #007bff, white); */
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  width: 100%;
 }

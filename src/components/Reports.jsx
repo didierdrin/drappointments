@@ -3,7 +3,7 @@ import { getAllAppointments } from '../api/appointmentApi';
 import { getAllUsers } from '../api/userApi';
 import { PDFDocument, rgb } from 'pdf-lib';
 import AppBarComponent from './AppBarComponent';
-
+import FooterComponent from './FooterComponent';
 
 const Reports = () => {
   const [appointments, setAppointments] = useState([]);
@@ -61,7 +61,7 @@ const Reports = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-0">
       <AppBarComponent titleName="Reports" /> 
       <div className="h-3"></div>
       <div className="mb-4">
@@ -94,7 +94,8 @@ const Reports = () => {
                 </li>
               ))}
         </ul>
-      </div>
+      </div> 
+      <FooterComponent />
     </div>
   );
 };

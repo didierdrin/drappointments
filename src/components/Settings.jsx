@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AppBarComponent from './AppBarComponent';
+import FooterComponent from './FooterComponent';
 
 const Settings = () => {
   const [settings, setSettings] = useState({
@@ -25,7 +26,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-0">
       <AppBarComponent titleName="Settings" /> 
       <div className="h-3"></div>
       <form onSubmit={handleSubmit} className="max-w-md">
@@ -82,7 +83,8 @@ const Settings = () => {
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">
           Save Settings
         </button>
-      </form>
+      </form> 
+      <FooterComponent />
     </div>
   );
 };

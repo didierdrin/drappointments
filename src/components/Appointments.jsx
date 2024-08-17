@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllAppointments, addAppointment } from '../api/appointmentApi';
 import AppBarComponent from './AppBarComponent';
+import FooterComponent from './FooterComponent';
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -37,7 +38,7 @@ const Appointments = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-0">
       <AppBarComponent titleName="Appointments" /> 
       <div className='h-3'></div>
       <form onSubmit={handleSubmit} className="mb-8">
@@ -83,6 +84,7 @@ const Appointments = () => {
           </li>
         ))}
       </ul>
+      <FooterComponent />
     </div>
   );
 };

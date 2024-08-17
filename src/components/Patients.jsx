@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllUsers, addUser } from '../api/userApi';
 import AppBarComponent from './AppBarComponent';
-
+import FooterComponent from './FooterComponent';
 
 const Patients = () => {
   const [patients, setPatients] = useState([]);
@@ -44,7 +44,7 @@ const Patients = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-0">
       <AppBarComponent titleName="Patients" />
       <div className='h-3'></div>
       <form onSubmit={handleSubmit} className="mb-8">
@@ -117,7 +117,8 @@ const Patients = () => {
             {patient.first_name} {patient.last_name} - {patient.email} - {patient.qualification}
           </li>
         ))}
-      </ul>
+      </ul> 
+      <FooterComponent />
     </div>
   );
 };

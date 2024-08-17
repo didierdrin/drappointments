@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBarComponent from './AppBarComponent';
+import FooterComponent from './FooterComponent';
 
 const mockNotifications = [
   { id: 1, message: 'New appointment scheduled', time: '2 hours ago' },
@@ -9,9 +10,9 @@ const mockNotifications = [
 
 const Notifications = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-0">
       <AppBarComponent titleName="Notifications" />
-    <div className='h-3'></div>
+      <div className='h-3'></div>
       <ul>
         {mockNotifications.map((notification) => (
           <li key={notification.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
@@ -20,6 +21,7 @@ const Notifications = () => {
           </li>
         ))}
       </ul>
+      <FooterComponent />
     </div>
   );
 };

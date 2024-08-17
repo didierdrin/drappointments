@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getAllUsers } from '../api/userApi';
 import { getAllAppointments } from '../api/appointmentApi';
 import AppBarComponent from './AppBarComponent';
+import FooterComponent from './FooterComponent';
 
 
 import {
@@ -105,7 +106,7 @@ const Dashboard = () => {
 
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-0">
       <AppBarComponent titleName="Dashboard" />
 
 
@@ -187,6 +188,7 @@ const Dashboard = () => {
           </Card>
         </Grid>
       </Grid>
+      <FooterComponent />
     </div>
   );
 };
