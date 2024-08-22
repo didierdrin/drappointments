@@ -26,8 +26,9 @@ const Settings = () => {
   };
 
   return (
-    <div className="container mx-0">
+    <div className="min-h-screen flex flex-col mx-0">
       <AppBarComponent titleName="Settings" /> 
+      <div className='flex-grow flex flex-col mr-4 ml-4'> 
       <div className="h-3"></div>
       <form onSubmit={handleSubmit} className="max-w-md">
         <div className="mb-4">
@@ -84,6 +85,7 @@ const Settings = () => {
           Save Settings
         </button>
       </form> 
+      </div>
       <FooterComponent />
     </div>
   );

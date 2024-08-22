@@ -62,7 +62,7 @@ const AppBarComponent = ({ titleName }) => {
                         {titleName}
                     </Typography>
              
-                    <IconButton color="inherit" className="mr-5" >
+                    <IconButton href='/notifications' color="inherit" className="mr-5" >
                         <NotificationsIcon />
                     </IconButton>
                     <div className='w-4'></div>
@@ -74,14 +74,16 @@ const AppBarComponent = ({ titleName }) => {
             </AppBar>
 
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-                <List className='flex flex-col'>
+                <List className='min-h-screen flex flex-col'>
+                <div className='flex-grow flex flex-col mt-4'>
                     {drawerItems.map((item) => (
                         <ListItem button key={item.text} component={Link} to={`/${item.text.toLowerCase()}`}>
                             <ListItemIcon>{item.icon}</ListItemIcon>
                             <ListItemText primary={item.text} />
                         </ListItem>
                     ))}
-                    <ListItem className='hover:bg-slate-100 cursor-pointer mt-[90px]'>
+                    </div>
+                    <ListItem className='hover:bg-slate-100 cursor-pointer mb-5'>
                         <ListItemIcon>{logoutItem.icon}</ListItemIcon>
                         <ListItemText primary={logoutItem.text} />
                     </ListItem>

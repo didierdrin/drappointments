@@ -44,80 +44,83 @@ const Patients = () => {
   };
 
   return (
-    <div className="container mx-0">
+    <div className="min-h-screen flex flex-col mx-0">
       <AppBarComponent titleName="Patients" />
-      <div className='h-3'></div>
-      <form onSubmit={handleSubmit} className="mb-8">
-        <input
-          type="text"
-          name="username"
-          value={newPatient.username}
-          onChange={handleInputChange}
-          placeholder="Username"
-          className="border p-2 mr-2"
-        />
-        <input
-          type="email"
-          name="email"
-          value={newPatient.email}
-          onChange={handleInputChange}
-          placeholder="Email"
-          className="border p-2 mr-2"
-        />
-        <input
-          type="number"
-          name="reg_number"
-          value={newPatient.reg_number}
-          onChange={handleInputChange}
-          placeholder="Registration Number"
-          className="border p-2 mr-2"
-        />
-        <input
-          type="text"
-          name="first_name"
-          value={newPatient.first_name}
-          onChange={handleInputChange}
-          placeholder="First Name"
-          className="border p-2 mr-2"
-        />
-        <input
-          type="text"
-          name="last_name"
-          value={newPatient.last_name}
-          onChange={handleInputChange}
-          placeholder="Last Name"
-          className="border p-2 mr-2"
-        />
-        <select
-          name="gender"
-          value={newPatient.gender}
-          onChange={handleInputChange}
-          className="border p-2 mr-2"
-        >
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-        <input
-          type="text"
-          name="qualification"
-          value={newPatient.qualification}
-          onChange={handleInputChange}
-          placeholder="Qualification"
-          className="border p-2 mr-2"
-        />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-          Add Patient
-        </button>
-      </form>
-      <ul>
-        {patients.map((patient) => (
-          <li key={patient.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
-            {patient.first_name} {patient.last_name} - {patient.email} - {patient.qualification}
-          </li>
-        ))}
-      </ul> 
+      <div className='flex-grow flex flex-col mr-4 ml-4'>
+        <div className='h-3 mb-8 mt-8'>Register Patients/System Users</div>
+        <form onSubmit={handleSubmit} className="mb-8">
+          <input
+            type="text"
+            name="username"
+            value={newPatient.username}
+            onChange={handleInputChange}
+            placeholder="Username"
+            className="border p-2 mr-2"
+          />
+          <input
+            type="email"
+            name="email"
+            value={newPatient.email}
+            onChange={handleInputChange}
+            placeholder="Email"
+            className="border p-2 mr-2"
+          /><br></br>
+          <input
+            type="number"
+            name="reg_number"
+            value={newPatient.reg_number}
+            onChange={handleInputChange}
+            placeholder="Registration Number"
+            className="border p-2 mr-2"
+          />
+          <input
+            type="text"
+            name="first_name"
+            value={newPatient.first_name}
+            onChange={handleInputChange}
+            placeholder="First Name"
+            className="border p-2 mr-2"
+          /><br></br>
+          <input
+            type="text"
+            name="last_name"
+            value={newPatient.last_name}
+            onChange={handleInputChange}
+            placeholder="Last Name"
+            className="border p-2 mr-2"
+          />
+          <select
+            name="gender"
+            value={newPatient.gender}
+            onChange={handleInputChange}
+            className="border p-2 mr-2"
+          >
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select><br></br>
+          <input
+            type="text"
+            name="qualification"
+            value={newPatient.qualification}
+            onChange={handleInputChange}
+            placeholder="Qualification"
+            className="border p-2 mr-2"
+          />
+          <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+            Add Patient
+          </button>
+        </form>
+        <ul>
+          {patients.map((patient) => (
+            <li key={patient.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
+              {patient.first_name} {patient.last_name} - {patient.email} - {patient.qualification}
+            </li>
+          ))}
+        </ul>
+
+      </div>
       <FooterComponent />
     </div>
   );

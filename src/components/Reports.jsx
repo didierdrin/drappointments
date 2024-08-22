@@ -61,8 +61,9 @@ const Reports = () => {
   };
 
   return (
-    <div className="container mx-0">
+    <div className="min-h-screen flex flex-col mx-0">
       <AppBarComponent titleName="Reports" /> 
+      <div className='flex-grow flex flex-col mr-4 ml-4'>
       <div className="h-3"></div>
       <div className="mb-4">
         <select
@@ -95,6 +96,7 @@ const Reports = () => {
               ))}
         </ul>
       </div> 
+      </div>
       <FooterComponent />
     </div>
   );
