@@ -79,7 +79,7 @@ const Appointments = () => {
       </form>
       <ul>
         {appointments.map((appointment) => (
-          <li key={appointment.id} className="mb-2">
+          <li key={appointment.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
             {appointment.doctor_name} - {appointment.nurse_name} - {appointment.appointment_reason} - {appointment.date}
           </li>
         ))}

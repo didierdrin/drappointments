@@ -113,7 +113,7 @@ const Patients = () => {
       </form>
       <ul>
         {patients.map((patient) => (
-          <li key={patient.id} className="mb-2">
+          <li key={patient.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
             {patient.first_name} {patient.last_name} - {patient.email} - {patient.qualification}
           </li>
         ))}
