@@ -30,8 +30,15 @@ const Patients = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addUser(newPatient);
+    
+    // Remove id from the new patient; the backend will handle ID generation
+    const { id, ...patientWithoutId } = newPatient;
+  
+    // Send the new patient data without the id field
+    await addUser(patientWithoutId);
+    
     fetchPatients();
+    
     setNewPatient({
       username: '',
       email: '',
@@ -42,6 +49,7 @@ const Patients = () => {
       qualification: ''
     });
   };
+  
 
   return (
     <div className="min-h-screen flex flex-col mx-0">

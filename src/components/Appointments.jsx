@@ -29,14 +29,14 @@ const Appointments = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Assign a unique ID to the new appointment
-    const appointmentWithId = {
-      ...newAppointment,
-      id: Date.now() // Generate a unique ID using current timestamp
-    };
-
-    await addAppointment(appointmentWithId);
+    // Remove id from the new appointment; the backend will handle ID generation
+    const { id, ...appointmentWithoutId } = newAppointment;
+  
+    // Send the new appointment data without the id field
+    await addAppointment(appointmentWithoutId);
+    
     fetchAppointments();
+    
     setNewAppointment({
       id: '',
       doctor_name: '',
@@ -46,6 +46,7 @@ const Appointments = () => {
     });
   };
 
+  
   return (
     <div className="min-h-screen flex flex-col mx-0">
       <AppBarComponent titleName="Appointments" /> 
