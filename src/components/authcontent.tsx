@@ -54,7 +54,7 @@ export default function Auth() {
   return (
     <div className="flex h-screen bg-gray-100">
   {/* Welcome section */}
-  <div className='w-1/2 bg-violet-500 text-white p-12 flex flex-col justify-between'>
+  <div className='hidden md:flex md:w-1/2 bg-violet-500 text-white p-12 flex-col justify-between'>
     <div>
       <h1 className="text-4xl font-bold mb-4">Drappointments</h1>
       <p className="text-xl mb-8">Welcome to appointments management platform</p>
@@ -66,7 +66,7 @@ export default function Auth() {
   </div>
 
   {/* Login/Sign up section */}
-  <div className='w-1/2 bg-white p-12 flex flex-col justify-center'>
+  <div className='w-full md:w-1/2 bg-white p-12 flex flex-col justify-center'>
     <h2 className="text-3xl font-semibold mb-6">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && <p className="text-red-500 text-sm">{error}</p>}
