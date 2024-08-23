@@ -51,7 +51,7 @@ const Appointments = () => {
     <div className="min-h-screen flex flex-col mx-0">
       <AppBarComponent titleName="Appointments" /> 
       <div className='flex-grow flex flex-col mr-4 ml-4'>
-      <div className='h-3 mb-8 mt-8'>Please fill the below form to add appointments in the register</div>
+      <div className='h-3 mb-8 mt-8'>Please fill the below form to add appointments in the register</div><br></br>
         <form onSubmit={handleSubmit} className="mb-8">
           <input
             type="text"
