@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from './authprovider';
+import { useNavigate } from 'react-router-dom';
 import {
     AppBar,
     Toolbar,
@@ -27,6 +29,8 @@ import {
 
 const AppBarComponent = ({ titleName }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const { logout } = useAuth();
+    const navigate = useNavigate();
 
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -45,9 +49,16 @@ const AppBarComponent = ({ titleName }) => {
 
     ];
 
-    const logoutItem = { text: 'Logout', icon: <LogoutIcon className='' /> };
 
+    const handleLogout = async () => {
+        await logout();
+        navigate('/auth'); // Redirect to the auth page after logout
+        setDrawerOpen(false); // Close the drawer
+    };
+    
+    const logoutItem = { text: 'Logout', icon: <LogoutIcon className='' />, onClick: handleLogout };
 
+    
 
 
     return (
@@ -83,7 +94,7 @@ const AppBarComponent = ({ titleName }) => {
                         </ListItem>
                     ))}
                     </div>
-                    <ListItem className='hover:bg-slate-100 cursor-pointer mb-5'>
+                    <ListItem onClick={logoutItem.onClick} className='hover:bg-slate-100 cursor-pointer mb-5'>
                         <ListItemIcon>{logoutItem.icon}</ListItemIcon>
                         <ListItemText primary={logoutItem.text} />
                     </ListItem>

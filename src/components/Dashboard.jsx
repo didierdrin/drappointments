@@ -4,7 +4,8 @@ import { getAllUsers } from '../api/userApi';
 import { getAllAppointments } from '../api/appointmentApi';
 import AppBarComponent from './AppBarComponent';
 import FooterComponent from './FooterComponent';
-
+import { useAuth } from './authprovider';
+import { FaStethoscope } from 'react-icons/fa';
 
 import {
   AppBar,
@@ -63,6 +64,19 @@ const Dashboard = () => {
       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
     }]
   });
+
+  const { user } = useAuth();
+
+  if (!user) {
+    return (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-gray-100">
+      <div className="animate-pulse">
+        <FaStethoscope className="text-sky-600 animate-cart-scale" size={64} />
+      </div>
+      <p className="mt-4 text-lg font-semibold text-gray-700">Loading Drappointments...</p>
+    </div>
+    );
+  }
 
   useEffect(() => {
     const fetchData = async () => {
