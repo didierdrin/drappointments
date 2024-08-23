@@ -68,7 +68,7 @@ const Appointments = () => {
             onChange={handleInputChange}
             placeholder="Nurse Name"
             className="border p-2 mr-2"
-          />
+          /><br></br>
           <input
             type="text"
             name="appointment_reason"
@@ -83,7 +83,7 @@ const Appointments = () => {
             value={newAppointment.date}
             onChange={handleInputChange}
             className="border p-2 mr-2"
-          />
+          /><br></br>
           <button type="submit" className="bg-blue-500 text-white p-2 rounded">
             Add Appointment
           </button>

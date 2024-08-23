@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from './authprovider';
+import { useAuth } from './authprovider'; // Assuming useAuth provides the user email
 import { useNavigate } from 'react-router-dom';
 import { AuthProvider } from './authprovider';
 
@@ -14,6 +14,7 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
+    Tooltip, // Import Tooltip from MUI
 } from '@mui/material';
 import {
     Menu as MenuIcon,
@@ -27,11 +28,9 @@ import {
     Person as PersonIcon,
 } from '@mui/icons-material';
 
-
-
 const AppBarComponent = ({ titleName }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const { logout } = useAuth();
+    const { logout, currentUser } = useAuth(); // Assuming currentUser contains user details like email
     const navigate = useNavigate();
 
     const toggleDrawer = (open) => (event) => {
@@ -48,9 +47,7 @@ const AppBarComponent = ({ titleName }) => {
         { text: 'Notifications', icon: <NotificationsIcon /> },
         { text: 'Reports', icon: <ReportsIcon /> },
         { text: 'Settings', icon: <SettingsIcon /> },
-
     ];
-
 
     const handleLogout = async () => {
         await logout();
@@ -58,10 +55,7 @@ const AppBarComponent = ({ titleName }) => {
         setDrawerOpen(false); // Close the drawer
     };
 
-    const logoutItem = { text: 'Logout', icon: <LogoutIcon className='' />, onClick: handleLogout };
-
-    
-
+    const logoutItem = { text: 'Logout', icon: <LogoutIcon />, onClick: handleLogout };
 
     return (
         <div>
@@ -74,27 +68,30 @@ const AppBarComponent = ({ titleName }) => {
                     <Typography variant="h6" style={{ flexGrow: 1 }}>
                         {titleName}
                     </Typography>
-             
-                    <IconButton href='/notifications' color="inherit" className="mr-5" >
+
+                    <IconButton href='/notifications' color="inherit" className="mr-5">
                         <NotificationsIcon />
                     </IconButton>
                     <div className='w-4'></div>
-                    <IconButton color="inherit">
-                        <PersonIcon />
-                    </IconButton>
-                </Toolbar>
 
+                    {/* Tooltip showing the user's email on hover */}
+                    <Tooltip title={`Logged in as ${currentUser?.email || 'User'}`} arrow>
+                        <IconButton color="inherit">
+                            <PersonIcon />
+                        </IconButton>
+                    </Tooltip>
+                </Toolbar>
             </AppBar>
 
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
                 <List className='min-h-screen flex flex-col'>
-                <div className='flex-grow flex flex-col mt-4'>
-                    {drawerItems.map((item) => (
-                        <ListItem button key={item.text} component={Link} to={`/${item.text.toLowerCase()}`}>
-                            <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText primary={item.text} />
-                        </ListItem>
-                    ))}
+                    <div className='flex-grow flex flex-col mt-4'>
+                        {drawerItems.map((item) => (
+                            <ListItem button key={item.text} component={Link} to={`/${item.text.toLowerCase()}`}>
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText primary={item.text} />
+                            </ListItem>
+                        ))}
                     </div>
                     <ListItem onClick={logoutItem.onClick} className='hover:bg-slate-100 cursor-pointer mb-5'>
                         <ListItemIcon>{logoutItem.icon}</ListItemIcon>
@@ -103,9 +100,7 @@ const AppBarComponent = ({ titleName }) => {
                 </List>
             </Drawer>
         </div>
-
-
     );
-}
+};
 
 export default AppBarComponent;
