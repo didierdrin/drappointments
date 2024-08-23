@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { getAllUsers, addUser } from '../api/userApi';
 import AppBarComponent from './AppBarComponent';
 import FooterComponent from './FooterComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 const Patients = () => {
   const [patients, setPatients] = useState([]);
   const [newPatient, setNewPatient] = useState({
+    id: '',
     username: '',
     email: '',
     reg_number: '',
@@ -31,15 +33,16 @@ const Patients = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Remove id from the new patient; the backend will handle ID generation
-    const { id, ...patientWithoutId } = newPatient;
+    // Generate a unique ID
+    const patientWithId = { ...newPatient, id: uuidv4() };
   
-    // Send the new patient data without the id field
-    await addUser(patientWithoutId);
+    // Send the new patient data with the id field
+    await addUser(patientWithId);
     
     fetchPatients();
     
     setNewPatient({
+      id: '', // Reset this field too
       username: '',
       email: '',
       reg_number: '',

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllAppointments, addAppointment } from '../api/appointmentApi';
 import AppBarComponent from './AppBarComponent';
 import FooterComponent from './FooterComponent';
+import { v4 as uuidv4 } from 'uuid'; 
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
@@ -29,16 +30,16 @@ const Appointments = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Remove id from the new appointment; the backend will handle ID generation
-    const { id, ...appointmentWithoutId } = newAppointment;
+    // Generate a unique ID
+    const appointmentWithId = { ...newAppointment, id: uuidv4() };
   
-    // Send the new appointment data without the id field
-    await addAppointment(appointmentWithoutId);
+    // Send the new appointment data with the id field
+    await addAppointment(appointmentWithId);
     
     fetchAppointments();
     
     setNewAppointment({
-      id: '',
+      id: '', // Reset this field
       doctor_name: '',
       nurse_name: '',
       appointment_reason: '',
@@ -46,7 +47,6 @@ const Appointments = () => {
     });
   };
 
-  
   return (
     <div className="min-h-screen flex flex-col mx-0">
       <AppBarComponent titleName="Appointments" /> 
