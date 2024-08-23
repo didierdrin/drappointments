@@ -4,6 +4,7 @@ import { useAuth } from './authprovider';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthError } from 'firebase/auth';
 import { auth } from './authprovider';
 import { setCookie } from 'cookies-next';
+import { useNavigate } from 'react-router-dom';
 
 export default function Auth() {
   const [email, setEmail] = useState('');
@@ -11,6 +12,8 @@ export default function Auth() {
   const [error, setError] = useState('');
   const [isLogin, setIsLogin] = useState(true);
   const { login } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,14 +24,16 @@ export default function Auth() {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCredential.user.getIdToken();
         setCookie('auth_token', token, { maxAge: 60 * 60 * 24 * 7 }); // 1 week
-        login(email, password); // This will handle the redirection
+        await login(email, password);
+        navigate('/dashboard'); // Redirect to dashboard after successful login
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
         // After successful signup, log the user in automatically
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCredential.user.getIdToken();
         setCookie('auth_token', token, { maxAge: 60 * 60 * 24 * 7 }); // 1 week
-        login(email, password);
+        await login(email, password);
+        navigate('/dashboard'); // Redirect to dashboard after successful signup and login
       }
     } catch (err) {
       const firebaseError = err as AuthError;
@@ -44,6 +49,7 @@ export default function Auth() {
       console.error(err);
     }
   };
+
 
   return (
     <div className="flex h-screen bg-gray-100">

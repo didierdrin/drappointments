@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from './authprovider';
 import { useNavigate } from 'react-router-dom';
+import { AuthProvider } from './authprovider';
+
 import {
     AppBar,
     Toolbar,
@@ -55,7 +57,7 @@ const AppBarComponent = ({ titleName }) => {
         navigate('/auth'); // Redirect to the auth page after logout
         setDrawerOpen(false); // Close the drawer
     };
-    
+
     const logoutItem = { text: 'Logout', icon: <LogoutIcon className='' />, onClick: handleLogout };
 
     

@@ -40,12 +40,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => unsubscribe();
   }, []);
 
-  const login = async (email: string, password: string, onSuccess?: () => void) => {
+  const login = async (email: string, password: string) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      if (onSuccess) onSuccess();
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      setUser(userCredential.user);
+      // You might want to set other state or do other operations here
     } catch (error) {
       console.error('Login error:', error);
+      throw error; // Rethrow the error so it can be caught in the handleSubmit function
     }
   };
 

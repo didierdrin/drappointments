@@ -45,7 +45,7 @@ function AppContent() {
   }
 
   return (
-    
+ 
     <Routes>
       <Route path="/auth" element={<Auth />} />
       <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
@@ -56,7 +56,7 @@ function AppContent() {
       <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
     </Routes>
-   
+
   );
 }
 
